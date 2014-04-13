@@ -12,4 +12,7 @@ This is my first page!
 
 This is a blank page
 
+<?php
+include("footer.php");
+?>
 
