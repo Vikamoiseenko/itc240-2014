@@ -42,7 +42,7 @@ if ($method == "GET") {
 	<!-- </pre> -->
 
 	<p>My dear Valentine,</p>
-	<p>You are so <b> <?= $_REQUEST["adjective"] ?> </b> and sweet. When I see you, I feel like <b> <?= $_REQUEST["noun"] ?> </b>. You smell like caramel. Would you like to go with me at 11 morning on Valentine's day?. There is a great restaurant there. And very yummy food. There is also a fun center where kids can <b> <?= $_REQUEST["verb"] ?> </b> in the pool, hockey and gumball bowling.</p>
+	<p>You are so <b> <?= htmlentities($_REQUEST["adjective"]) ?> </b> and sweet. When I see you, I feel like <b> <?= htmlentities($_REQUEST["noun"]) ?> </b>. You smell like caramel. Would you like to go with me at 11 morning on Valentine's day?. There is a great restaurant there. And very yummy food. There is also a fun center where kids can <b> <?= htmlentities($_REQUEST["verb"]) ?> </b> in the pool, hockey and gumball bowling.</p>
 <?php
 $noun = $_REQUEST["noun"];
 $verb = $_REQUEST["verb"];
@@ -52,17 +52,17 @@ $number2 = $_REQUEST["number2"];
 
 if ($number1 == 5) {
 ?>
-	<p>Would you like to go with me at <b> <?= $_REQUEST["number1"] ?> </b> morning on Valentine's day?. Hope you will be available).  </p>
+	<p>Would you like to go with me at <b> <?= htmlentities($_REQUEST["number1"]) ?> </b> morning on Valentine's day?. Hope you will be available).  </p>
 
 <?php
 }
 if ($number2 <=10) {
 ?> 
-	<p>They serve potato salad, chicken soup, and give <b> <?= $_REQUEST["number2"] ?> </b> Margaritas free!!!! I hope you can come! It would be so great to see you!!!!</p></p>
+	<p>They serve potato salad, chicken soup, and give <b> <?= htmlentities($_REQUEST["number2"]) ?> </b> Margaritas free!!!! I hope you can come! It would be so great to see you!!!!</p></p>
 <?php
 } else {
 ?>
-<p>Do not come, because they do not serve Ice-cream!!!</p>
+<p>I you will come, I will buy for you Ice-cream!!!</p>
 
 <?php
 }
