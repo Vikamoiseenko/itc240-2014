@@ -12,6 +12,17 @@ margin: 5px auto;
 padding: 0 10px 10px 10px;
 font-family:'Times New Roman', Times, serif;
 font-size:16px;
+
+}
+.img {
+
+display:inline-block;
+
+padding:5px 5px 5px 15px;
+margin: 0 20px 20px 0;
+line-height: 26px;
+	 width: auto;
+
 }
 
 
