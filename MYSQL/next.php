@@ -12,10 +12,10 @@ ORDER by Departure_Date;');
 <p>Show departure date, flight number, crew lastname and crew firstname of all flights using a Boeing 737, sorted by departure date</p>
 <thead>
 <tr>
-<th>Aircraft Tail Number</th>
-<th>Aircraft Model</th>
-<th>Aircraft Capacity</th>
-<th>AirlineID</th>
+<th>Departure_Date</th>
+<th>Flight_Number</th>
+<th>Crew_Last_Name</th>
+<th>Crew_First_Name</th>
 </tr>
 <?php
 foreach ($air as $row) {

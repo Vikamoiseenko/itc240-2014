@@ -5,5 +5,5 @@
 </head>
 
 <header>
-Sochi 2014
+Airport database
 </header>

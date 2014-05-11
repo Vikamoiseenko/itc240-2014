@@ -1,9 +1,12 @@
 <?php
-$dep = $mysql->query('SELECT Departure_Date, f.Flight_Number, Aircraft_Model, Aircraft_Capacity
+$query = <<<STRING
+SELECT Departure_Date, f.Flight_Number, Aircraft_Model, Aircraft_Capacity
 FROM Aircraft a, Flight f, Trip t
 WHERE t.Aircraft_Tail_Number=a.Aircraft_Tail_Number
 AND f.Flight_Number=t.Flight_Number
-AND Month(Departure_Date) = 1 and DAYOFMONTH(Departure_Date) = 16;');
+AND Month(Departure_Date) = 1 and DAYOFMONTH(Departure_Date) = 16;')
+STRING;
+$dep = $mysql->query($query);
 ?>
 <table>
 <p>show departure date, flight number, aircraft model and aircraft capacity for all flights that departed on February 16</p>
