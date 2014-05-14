@@ -180,6 +180,7 @@ foreach ($Trip_Crew as $vk) {
 ?>
 </table>
 <?php
+$show = "next";
 include("page.php");
 ?>
 
