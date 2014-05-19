@@ -79,12 +79,12 @@ $id = $_REQUEST["update_id"];
 if($id) {
 $query = 'UPDATE receipts SET item=?, cost=?, date=? WHERE id=?';
 $update = $mysql->prepare($query);
-$update->bind_param("siii", $item, $cost, $date, $id);
+$update->bind_param("sdsi", $item, $cost, $date, $id);
 $update->execute();
 } else {
 $query = 'INSERT INTO receipts (item, cost, date) VALUES (?, ?, ?)';
 $insert = $mysql->prepare($query);
-$insert->bind_param("sii", $item, $cost, $date);
+$insert->bind_param("sds", $item, $cost, $date);
 $insert->execute();
 }
 }
@@ -114,9 +114,9 @@ $getSum->execute();
 $sumResult = $getSum->get_result();
 ?>
 <tr>
-<td>Total: <?= $sumResult[cost] ?> $ </td> 
+<td><b>Total</b></td> 
+<td> <?= $sumResult["cost"] ?> </td> 
 </tr>
 </table>
-//I have an error in line 117. And also I have no idea why the date do not show me what i type, and also when i type cost it show me the whole number, but the type in database right.
 </body>
 </html>
