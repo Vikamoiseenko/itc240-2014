@@ -221,3 +221,5 @@ $sumQuery = $mysql->prepare('SELECT SUM(cal_burn) AS sum FROM activity;');
 
 </body>
 </html>
+
+//My code is working, except Update function.I cannot update it. There is now error. If you could help me to fix it, it will be great. Thanks 
