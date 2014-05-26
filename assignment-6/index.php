@@ -130,7 +130,6 @@ $sumQuery = $mysql->prepare('SELECT SUM(calories) AS sum FROM food_track;');
     
     $countResult = $mysql->query('SELECT COUNT(*) AS rows FROM food_track;');
     $count = $countResult->fetch_array();
-
 ?>
 <?php
 if(isset($_REQUEST["show"])){
