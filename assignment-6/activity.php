@@ -5,6 +5,7 @@ $cal_burn = $_REQUEST["cal_burn"];
 $activity_on = $_REQUEST["activity_on"];
 $id = $_REQUEST["id"];
 
+
 if (isset($_REQUEST["update"])) {
 $get_update = 'SELECT * FROM activity where id = ?';
 $select = $mysql->prepare($get_update);
