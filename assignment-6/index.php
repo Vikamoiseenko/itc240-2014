@@ -32,12 +32,11 @@ button {
 float: center;
 background-color:  	#FF0000;
 }
-
 </style>
 </head>
 <body>
-<p><b>Welcome to Neko's activity and food track</b></p>
 
+<p><b>Welcome to Neko's activity and food track</b></p>
 <p>Food</p>
 <form method="POST" action="food.php">
 <table>
