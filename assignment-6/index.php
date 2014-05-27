@@ -115,7 +115,6 @@ $prepared = $mysql->prepare("SELECT * FROM food_track ORDER BY $line DESC;");
 </tr>
 
 <?php
-
 foreach ($results as $row) {
 ?>
 
@@ -146,10 +145,7 @@ $sumQuery = $mysql->prepare('SELECT SUM(calories) AS sum FROM food_track;');
     $countResult = $mysql->query('SELECT COUNT(*) AS rows FROM food_track;');
     $count = $countResult->fetch_array();
 ?>
-<<<<<<< HEAD
 
-=======
->>>>>>> 953f7946d558fa2431e0b463bfbacc21a29ff494
 <table>
 <p>Result</p>
 <thead>
@@ -249,8 +245,4 @@ $sumQuery = $mysql->prepare('SELECT SUM(cal_burn) AS sum FROM activity;');
 </body>
 </html>
 
-<<<<<<< HEAD
 //My code is almost working, except Update function and I have an error in line 105 and 187 (Call to a member function execute() on a non-object). If you could please help me to fix it, it will be great. Thanks 
-=======
-//My code is working, except Update function.I cannot update it. There is now error. If you could help me to fix it, it will be great. Thanks 
->>>>>>> 953f7946d558fa2431e0b463bfbacc21a29ff494
