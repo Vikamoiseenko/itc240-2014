@@ -108,7 +108,7 @@ foreach ($receipts as $row) {
 ?> 
 
 <?php
-$sumV = 'SELECT SUM(cost) FROM receipts;';
+$sumV = 'SELECT SUM(cost) AS cost * FROM receipts;';
 $getSum = $mysql->prepare($sumV);
 $getSum->execute();
 $sumResult = $getSum->get_result();
