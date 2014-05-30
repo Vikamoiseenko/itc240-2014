@@ -38,11 +38,24 @@ background-color:  	#FF0000;
 
 <p><b>Welcome to Neko's activity and food track</b></p>
 <p>Food</p>
+<?php
+include("password.php");
+$mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
+$calories = "";
+if (isset($_REQUEST["update"])) {
+	$get_update = 'SELECT * FROM food_track where id = ?';
+	$select = $mysql->prepare($get_update);
+	$select->bind_param("i", $_REQUEST["update"]);
+	$select->execute();
+	$existing = $select->get_result()->fetch_array();
+	$calories = $existing["calories"];
+}
+?>
 <form method="POST" action="food.php">
 <table>
 <tr>
 <td><label for="calories">Enter calories</label></td>
-<td><input name="calories" value="">
+<td><input name="calories" value="<?= $calories ?>">
 </tr>
 <tr>
 <td><label for="name_food">Enter type food</label></td>
@@ -82,8 +95,6 @@ background-color:  	#FF0000;
 
 <?php
 //make connection
-include("password.php");
-$mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
 $line = 'name_food';
 if(isset($_REQUEST["sort"])) {
 $line = $_REQUEST["sort"];
@@ -91,14 +102,14 @@ $line = $_REQUEST["sort"];
 $line = $mysql->real_escape_string($line);
 
 $whitelist = [
-        "name_activity" => true,
+        "calories" => true,
         "name_food" => true,
      ];
     
     if (!isset($whitelist[$line])) {
         $line = 'name_food';
     }
-
+echo "SELECT * FROM food_track ORDER BY $line DESC;";
 $prepared = $mysql->prepare("SELECT * FROM food_track ORDER BY $line DESC;");
     //don't need to bind - no parameters!
     $prepared->execute();
