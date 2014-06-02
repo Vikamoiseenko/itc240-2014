@@ -6,7 +6,7 @@ function make_cookie($name, $value) {
   function delete_cookie($name) {
     setcookie($name, "", 10, "/");
   } 
-$name = "";
+  $name = "";
 $image = "";
 $description = "";
 $author = "";
