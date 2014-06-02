@@ -6,7 +6,7 @@ function make_cookie($name, $value) {
   function delete_cookie($name) {
     setcookie($name, "", 10, "/");
   } 
-  $name = "";
+$name = "";
 $image = "";
 $description = "";
 $author = "";
@@ -28,18 +28,31 @@ make_cookie('image', $image);
 make_cookie('description', $description);
 make_cookie('author', $author);
 ?>
-
-
 <!doctype html>
 <html>
 <head>
-<link href="style.css" type="text/css" rel="stylesheet">
+<style>
+<?php
+if (isset($_REQUEST['style'])) {
+$style = $_REQUEST['style'];
+}
+$style = '';
+if ($style == "style") {
+include("style.php");
+} else if ($style == "style2") {
+include("style2.php");
+} else {
+include("style.php");
+}
+?>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+</style>
 </head>
 <body>
 
 <form action="cover.php" method="get">
-<label for="sort" class="sortByLabel">Sort by&nbsp;</label><select class="sortByDropdown" onchange="this.form.submit();">
+<label for="sort" class="sortByLabel">Sort by&nbsp;</label>
+<select class="sortByDropdown" onchange="this.form.submit();">
 <option value="<?= $name ?>">Title A-Z</option>
 <option value="<?= $name ?>">Title Z-A</option>
 <option value="<?= $image ?>">Author A-Z</option>
@@ -74,8 +87,6 @@ foreach ($books as $row) {
 <td><img src=<?= $row["image"]; ?>>
 </tr>
 <b><?= $row["name"] ?></b>
-
-
 <?php
 }
 ?>
