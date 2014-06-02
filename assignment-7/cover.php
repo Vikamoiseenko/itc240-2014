@@ -6,7 +6,17 @@ function make_cookie($name, $value) {
   function delete_cookie($name) {
     setcookie($name, "", 10, "/");
   } 
-  $book_name = "";
+  
+$book_get = "";
+if (isset($_COOKIE["book_get"])) {
+$book_get = $_COOKIE["book_get"];
+}  
+if (isset($_REQUEST["get"])) {
+$book_get = $_REQUEST["get"];
+}
+make_cookie("book_get", $book_get);
+?> 
+<!-- $book_name = "";
 $book_image = "";
 $book_description = "";
 $book_author = "";
@@ -38,7 +48,7 @@ make_cookie("book_name", $book_name);
 make_cookie("book_image", $book_image);
 make_cookie("book_description", $book_description);
 make_cookie("book_author", $book_author);
-?>
+?> -->
 <!doctype html>
 <html>
 <head>
@@ -74,8 +84,32 @@ include("password.php");
 $mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
 
 $books =  $mysql->query('SELECT * FROM books');
+?>
+<?php
+$get = 'name';
+if(isset($_REQUEST['get'])) {
+$get = $_REQUEST['get'];
+}
+$get = $mysql->real_escape_string($get);
 
+    $whitelist = [
+        "name" => true,
+        "image" => true,
+		"name2" => true,
+        "image2" => true,
+    ];
 
+ if (!isset($whitelist[$get])) {
+        $get = 'name';
+    }
+
+$prepare = $mysql->prepare("SELECT * FROM books ORDER BY $get ASC;");
+
+$prepare->execute();
+$results = $prepare->get_result();
+
+?>
+<!--
 if(isset($_REQUEST['get'])) {
 if ($_REQUEST['get'] == 'name') {
 $books = $mysql->query('SELECT * FROM books order by name ASC;');
@@ -87,10 +121,11 @@ $books = $mysql->query('SELECT * FROM books order by image ASC ;');
 $books = $mysql->query('SELECT * FROM books order by image DESC ;');
 }
 }
-?>
+-->
+
 
 <?php
-foreach ($books as $row) {
+foreach ($results as $row) {
 ?>
 <table>
 <tr>
@@ -98,6 +133,7 @@ foreach ($books as $row) {
 <td><img src=<?= htmlentities($row["image"]); ?>>
 </tr>
 <b><?= htmlentities($row["name"]) ?></b>
+
 <?php
 }
 ?>

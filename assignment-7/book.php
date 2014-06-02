@@ -18,9 +18,9 @@ include("style1.php");
 <form action="book.php" method="get">
 <label for="sort">Sort by&nbsp;</label><select class="sortByDropdown" name="sort" id="sort" onchange="this.form.submit();">
 <option value="<?= $name ?>">Title A-Z</option>
-<option value="<?= $name ?>">Title Z-A</option>
+<option value="<?= $name1 ?>">Title Z-A</option>
 <option value="<?= $author ?>">Author A-Z</option>
-<option value="<?= $author ?>">Author Z-A</option>
+<option value="<?= $author1 ?>">Author Z-A</option>
 </select>
 </form>
 
@@ -33,13 +33,13 @@ $author = "";
 $books = $mysql->query('SELECT * FROM books');
 if(isset($_REQUEST['get'])) {
 if ($_REQUEST['get'] == 'name') {
-$books = $mysql->query('SELECT * FROM books order by name ASC;');
-} else if ($_REQUEST['get'] == 'name') {
+$books = $mysql->prepare('SELECT * FROM books order by name ASC;');
+} else if ($_REQUEST['get'] == 'name1') {
 $books = $mysql->query('SELECT * FROM books order by  name DESC;');
 } else if ($_REQUEST['get'] == 'author') {
 $books = $mysql->query('SELECT * FROM books order by author ASC ;');
 
-} else if ($_REQUEST['get'] == 'author') {
+} else if ($_REQUEST['get'] == 'author1') {
 $books = $mysql->query('SELECT * FROM books order by author DESC ;');
 }
 }
