@@ -6,27 +6,38 @@ function make_cookie($name, $value) {
   function delete_cookie($name) {
     setcookie($name, "", 10, "/");
   } 
-  $name = "";
-$image = "";
-$description = "";
-$author = "";
+  $book_name = "";
+$book_image = "";
+$book_description = "";
+$book_author = "";
+if(isset($_COOKIE["book_name"])) {
+$book_name = $_COOKIE["book_name"];
+}
 if(isset($_COOKIE["name"])) {
-$name = $_COOKIE['name'];
+$book_name = $_REQUEST["name"];
 }
-if(isset($_COOKIE["image"])) {
-$image = $_COOKIE['image'];
+if(isset($_COOKIE["book_image"])) {
+$book_image = $_COOKIE["book_image"];
 }
-if(isset($_COOKIE["description"])) {
-$description = $_COOKIE['description'];
+if(isset($_COOKIE["book_image"])) {
+$book_image = $_REQUEST["image"];
 }
-if(isset($_COOKIE["author"])) {
-$author = $_COOKIE['author'];
+if(isset($_COOKIE["book_description"])) {
+$book_description = $_COOKIE["book_description"];
 }
-
-make_cookie('name', $name);
-make_cookie('image', $image);
-make_cookie('description', $description);
-make_cookie('author', $author);
+if(isset($_COOKIE["book_description"])) {
+$book_description = $_REQUEST["description"];
+}
+if(isset($_COOKIE["book_author"])) {
+$book_author = $_COOKIE["book_author"];
+}
+if(isset($_COOKIE["book_author"])) {
+$book_author = $_REQUEST["author"];
+}
+make_cookie("book_name", $book_name);
+make_cookie("book_image", $book_image);
+make_cookie("book_description", $book_description);
+make_cookie("book_author", $book_author);
 ?>
 <!doctype html>
 <html>
@@ -52,9 +63,9 @@ include("style2.php");
 <label for="sort" class="sortByLabel">Sort by&nbsp;</label>
 <select class="sortByDropdown" onchange="this.form.submit();">
 <option value="<?= $name ?>">Title A-Z</option>
-<option value="<?= $name ?>">Title Z-A</option>
+<option value="<?= $name2 ?>">Title Z-A</option>
 <option value="<?= $image ?>">Author A-Z</option>
-<option value="<?= $image ?>">Author Z-A</option>
+<option value="<?= $image2 ?>">Author Z-A</option>
 </select>
 </form>
 
@@ -62,15 +73,17 @@ include("style2.php");
 include("password.php");
 $mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
 
-$books = $mysql->query('SELECT * FROM books');
+$books =  $mysql->query('SELECT * FROM books');
+
+
 if(isset($_REQUEST['get'])) {
 if ($_REQUEST['get'] == 'name') {
 $books = $mysql->query('SELECT * FROM books order by name ASC;');
-} else if ($_REQUEST['get'] == 'name') {
+} else if ($_REQUEST['get'] == 'name2') {
 $books = $mysql->query('SELECT * FROM books order by  name DESC;');
-} else if ($_REQUEST['get'] == 'author') {
+} else if ($_REQUEST['get'] == 'image') {
 $books = $mysql->query('SELECT * FROM books order by image ASC ;');
-} else if ($_REQUEST['get'] == 'author') {
+} else if ($_REQUEST['get'] == 'image') {
 $books = $mysql->query('SELECT * FROM books order by image DESC ;');
 }
 }
@@ -82,9 +95,9 @@ foreach ($books as $row) {
 <table>
 <tr>
 <div class="img">
-<td><img src=<?= $row["image"]; ?>>
+<td><img src=<?= htmlentities($row["image"]); ?>>
 </tr>
-<b><?= $row["name"] ?></b>
+<b><?= htmlentities($row["name"]) ?></b>
 <?php
 }
 ?>

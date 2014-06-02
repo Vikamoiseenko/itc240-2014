@@ -38,6 +38,7 @@ $books = $mysql->query('SELECT * FROM books order by name ASC;');
 $books = $mysql->query('SELECT * FROM books order by  name DESC;');
 } else if ($_REQUEST['get'] == 'author') {
 $books = $mysql->query('SELECT * FROM books order by author ASC ;');
+
 } else if ($_REQUEST['get'] == 'author') {
 $books = $mysql->query('SELECT * FROM books order by author DESC ;');
 }
