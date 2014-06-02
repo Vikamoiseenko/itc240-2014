@@ -5,13 +5,18 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<h1>BOOKS</h1>
+<a href="?show=cover">Cover view</a>
+<a href="?show=book">List view</a>
 
 <?php
-$show = "cover";
-if (isset($_REQUEST["show"])) {
-$show = $_REQUEST["show"];
+
+if ($show == "cover") {
+include("cover.php");
+} else if ($show == "book") {
+include("book.php");
 }
-include("page.php");
+
 ?>
 </body>
 </html>
