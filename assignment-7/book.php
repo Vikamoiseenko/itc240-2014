@@ -3,16 +3,13 @@
 <style>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 <?php
-$style = '';
-if (isset($_REQUEST['style'])) {
-$style = $_REQUEST['style'];
-}
+
 if ($style == "style") {
 include("style.php");
 } else if ($style == "style2") {
 include("style2.php");
 } else {
-include("style.php");
+include("style1.php");
 }
 ?>
 </style>

@@ -41,9 +41,7 @@ if ($style == "style") {
 include("style.php");
 } else if ($style == "style2") {
 include("style2.php");
-} else {
-include("style.php");
-}
+} 
 ?>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </style>
