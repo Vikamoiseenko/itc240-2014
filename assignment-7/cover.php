@@ -71,7 +71,7 @@ include("style2.php");
 
 <form action="cover.php" method="get">
 <label for="sort" class="sortByLabel">Sort by&nbsp;</label>
-<select class="sortByDropdown" onchange="this.form.submit();">
+<select name="Sort by">
 <option value="<?= $name ?>">Title A-Z</option>
 <option value="<?= $name2 ?>">Title Z-A</option>
 <option value="<?= $image ?>">Author A-Z</option>
@@ -88,6 +88,7 @@ $books =  $mysql->query('SELECT * FROM books');
 <?php
 $get = 'name';
 if(isset($_REQUEST['get'])) {
+if(isset($_REQUEST['get'])) {
 $get = $_REQUEST['get'];
 }
 $get = $mysql->real_escape_string($get);
@@ -102,6 +103,7 @@ $get = $mysql->real_escape_string($get);
  if (!isset($whitelist[$get])) {
         $get = 'name';
     }
+	}
 
 $prepare = $mysql->prepare("SELECT * FROM books ORDER BY $get ASC;");
 
