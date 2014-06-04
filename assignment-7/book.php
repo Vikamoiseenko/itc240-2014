@@ -3,10 +3,14 @@
 <style>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 <?php
-if ($book_get["style"] == "style") {
-$book_get["style"] = "style.css";
-} else if ($book_get["style"] == "style2") {
-$book_get["style"] = "style2.css";
+if (isset($_REQUEST['style'])) {
+$style = $_REQUEST['style'];
+}
+$style = '';
+if ($style == "style") {
+include("style.php");
+} else if ($style == "style2") {
+include("style2.php");
 } 
 ?>
 </style>
@@ -14,39 +18,45 @@ $book_get["style"] = "style2.css";
 <body>
 <!<form action="book.php" method="get">
 <label for="sort" class="sortByLabel">Sort by&nbsp;
-<select name="Sort by">
-<option value="<?= $name ?>Title A-Z</option>
-<option value="<?= $name ?>">Title Z-A</option>
-<option value="<?= $author ?>">Author A-Z</option>
-<option value="<?= $author?>">Author Z-A</option>
+<select name="get">
+<option value="name">Title A-Z</option>
+<option value="name desc">Title Z-A</option>
+<option value="author">Author A-Z</option>
+<option value="author desc">Author Z-A</option>
 </select>
+<input type="submit">
 </form>
 
 <?php
 include("password.php");
 $mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
+$books =  $mysql->query('SELECT * FROM books');
+$get = $mysql->real_escape_string($book_get);
 
-$books = $mysql->query('SELECT * FROM books');
-if(isset($_REQUEST['get'])) {
-if ($_REQUEST['get'] == 'name') {
-$books = $mysql->prepare('SELECT * FROM books order by name ASC;');
-} else if ($_REQUEST['get'] == 'name') {
-$books = $mysql->query('SELECT * FROM books order by  name DESC;');
-} else if ($_REQUEST['get'] == 'author') {
-$books = $mysql->query('SELECT author * FROM books order by author ASC ;');
+    $whitelist = [
+        "name" => true,
+        "author" => true,
+	 "name desc" => true,
+        "author desc" => true,
+    ];
 
-} else if ($_REQUEST['get'] == 'author') {
-$books = $mysql->query('SELECT * FROM books order by author DESC ;');
+if (!isset($whitelist[$get])) {
+	$get = 'name';
 }
-}
+
+
+$prepare = $mysql->prepare("SELECT * FROM books ORDER BY $get;");
+
+$prepare->execute();
+$results = $prepare->get_result();
 ?>
 <?php
-foreach ($books as $row) {
+foreach ($results as $row) {
 ?>
 <ul>
-<li><b><?= $row["name"] ?></b> 
-<li><b><i><?= $row["author"] ?></b></i> 
-<li><i><?= $row["description"] ?></i>
+<li><b><?= htmlentities($row["name"]) ?></b> 
+<li><b><i><?= htmlentities($row["author"]) ?></b></i> 
+<li><i><?= htmlentities($row["description"]) ?></i>
 </ul>
 <?php
 }

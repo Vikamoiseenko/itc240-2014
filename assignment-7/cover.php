@@ -50,11 +50,7 @@ include("style2.php");
 <?php
 include("password.php");
 $mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
-
 $books =  $mysql->query('SELECT * FROM books');
-?>
-<?php
-
 $get = $mysql->real_escape_string($book_get);
 
     $whitelist = [
