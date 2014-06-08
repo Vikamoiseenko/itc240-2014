@@ -17,7 +17,7 @@ $food = get_food();
 <link href="style.css" type="text/css" rel="stylesheet">
 
 <body>
-<p><b>Welcome to Neko's activity and food track</b></p>
+<p><b>Welcome to Neko's food track</b></p>
 <form method="POST">
 <table>
 <tr>
