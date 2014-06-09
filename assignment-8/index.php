@@ -1,64 +1,66 @@
 <?php
 include("password.php");
 include("function.php");
-
-$sort = get_request("sort");
-
-get_array($_REQUEST, "sort");
-
-$food = insert_food();
-update_food();
-$food = get_food();
-
+$get = get_request("get");
+echo $get;
 ?>
+
 <!doctype html>
 <html>
+<head>
+<title>Assignment 8</title>
+<style>
+table {
+margin: left;
+}
+thead, th, td {
+border: 1px solid black;
+padding: 10px;
+}
+img {
+float: center;
 
-<link href="style.css" type="text/css" rel="stylesheet">
-
+height:300px;
+}
+</style>
+</head>
 <body>
-<p><b>Welcome to Neko's food track</b></p>
-<form method="POST">
+
 <table>
-<tr>
-<td><label for="calories">Enter calories</label></td>
-<td><?php input("calories"); ?>
-</tr>
-<tr>
-<td><label for="name_food">Enter type food</label></td>
-<td><?php input("name_food"); ?></td>
-</tr>
-<tr>
-<td><label for="food_on">Enter date in the format yyyy-mm-dd</label></td>
-<td><?php input ("food_on"); ?></td>
-<input name="id" type="hidden">
-<td><button>Get Result</button></td>
-</tr>
-</table>
-</form>
-<a href="?sort=name_activity">Activity</a>
-<table>
-<p>Food</p>
+<p>Figure Skating</p>
 <thead>
 <tr>
-<th>Calories</th>
-<th>Type of food</th>
-<th>Date</th>
+<th><a href="?get=athlete">Athlete</a></th>
+<th><a href="?get=events">Events</th>
+<th><a href="?get=country">Country</th>
+<th>Medal</th>
 </tr>
+<?php
 
-<?php
-foreach($food as $row) {
+
+$events = get_request('events');
+$athlete = get_request('athlete');
+$country = get_request('country');
+if($events) {
+$sochi = get_events();
+} else if($athlete) {
+$sochi = get_athlete();
+} else if ($country){
+$sochi = get_country();
+}
+foreach ($sochi as $row) {
 ?>
+
 <tr>
-<td><?= htmlentities($row["calories"]) ?>
-<td><?= htmlentities($row["name_food"]) ?>
-<td><?= htmlentities($row["food_on"]) ?>
-<td><b>UPDATE:</b> <a href="?update=<?= $row["id"] ?>">&bull;</a></td> 
-<?php
+<td><?= clean($row["Athlete"]); ?> <img src="<?= $row["Image"] ?>">
+<td><?= clean($row["Events"]); ?>
+<td><?= clean($row["Country"]); ?>
+<td><?= clean($row["MEDAL"]); ?>
+<?php 
 }
 ?>
-</table>
 
+</table>
 
 
 </body>

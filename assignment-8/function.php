@@ -1,9 +1,7 @@
 <?php
-function get_array($array, $param) {
-if (isset($array[$param])) {
-return $array[$param];
-}
-return false;
+
+function clean($value) {
+return htmlentities($value);
 }
 
 function get_request($param) {
@@ -18,31 +16,24 @@ function get_request($param) {
 
 $mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
 
-function update_food() {
+function get_athlete() {
 global $mysql;
-$select = $mysql->prepare('UPDATE food_track SET calories=?, name_food=?, food_on=? WHERE id=?');
-$select->bind_param("issi", $calories, $name_food, $food_on, $id);
-$select->execute();
-return $select->get_result();
+global $athlete;
+$prepare = $mysql->prepare('select * from Figure_skating');
+$prepare->execute();
+return $prepare->get_result();
 }
-function insert_food(){
+function get_events() {
 global $mysql;
-$insert = $mysql->prepare('INSERT INTO food_track (calories, name_food, food_on) VALUES (?, ?, NOW());');
-$insert->bind_param("is", $_REQUEST["calories"],  $_REQUEST["name_food"]);
-$insert->execute();
-
+global $events;
+$prepare = $mysql->prepare('select * from Figure_skating order by events DESC;');
+$prepare->execute();
+return $prepare->get_result();
 }
-function get_food() {
-	global $mysql;
-	$prepared = $mysql->prepare('SELECT * FROM food_track');
-	$prepared->execute();
-	return $prepared->get_result();
+function get_country() {
+global $mysql;
+global $country;
+$prepare = $mysql->prepare('select * from Figure_skating Where MEDAL = "Gold" order by Country DESC ;');
+$prepare->execute();
+return $prepare->get_result();
 }
-function input($name) {
-?>
-<input name="<?= $name ?>">
-<?php
-}
-
-
-?>
