@@ -4,7 +4,6 @@ include("function.php");
 $get = get_request("get");
 echo $get;
 ?>
-
 <!doctype html>
 <html>
 <head>
