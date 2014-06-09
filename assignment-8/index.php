@@ -66,9 +66,6 @@ foreach($sochi as $row){
 <?php 
 }
 ?>
-
 </table>
-
-
 </body>
 </html>
