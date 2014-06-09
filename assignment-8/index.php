@@ -26,6 +26,23 @@ height:300px;
 </head>
 <body>
 
+
+<?php
+$sochi = get_sochi();
+
+$events = get_request('events');
+$athlete = get_request('athlete');
+$country = get_request('country');
+if(isset($_REQUEST['get'])) {
+if($events) {
+$sochi = get_events();
+} else if($athlete) {
+$sochi = get_athlete();
+} else if ($country){
+$sochi = get_country();
+}
+}
+?>
 <table>
 <p>Figure Skating</p>
 <thead>
@@ -35,20 +52,10 @@ height:300px;
 <th><a href="?get=country">Country</th>
 <th>Medal</th>
 </tr>
+
+
 <?php
-
-
-$events = get_request('events');
-$athlete = get_request('athlete');
-$country = get_request('country');
-if($events) {
-$sochi = get_events();
-} else if($athlete) {
-$sochi = get_athlete();
-} else if ($country){
-$sochi = get_country();
-}
-foreach ($sochi as $row) {
+foreach($sochi as $row){
 ?>
 
 <tr>

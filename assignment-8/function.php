@@ -16,6 +16,13 @@ function get_request($param) {
 
 $mysql = new mysqli("localhost", "vmoise01", $mysql_pass, "vmoise01");
 
+function get_sochi() {
+global $mysql;
+$prepare = $mysql->prepare('select * from Figure_skating');
+$prepare->execute();
+return $prepare->get_result();
+}
+
 function get_athlete() {
 global $mysql;
 global $athlete;
