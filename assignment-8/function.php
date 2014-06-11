@@ -25,21 +25,18 @@ return $prepare->get_result();
 
 function get_athlete() {
 global $mysql;
-global $athlete;
-$prepare = $mysql->prepare('select * from Figure_skating');
+$prepare = $mysql->prepare('select * from Figure_skating order by athlete ASC');
 $prepare->execute();
 return $prepare->get_result();
 }
 function get_events() {
 global $mysql;
-global $events;
 $prepare = $mysql->prepare('select * from Figure_skating order by events DESC;');
 $prepare->execute();
 return $prepare->get_result();
 }
 function get_country() {
 global $mysql;
-global $country;
 $prepare = $mysql->prepare('select * from Figure_skating Where MEDAL = "Gold" order by Country DESC ;');
 $prepare->execute();
 return $prepare->get_result();

@@ -29,17 +29,14 @@ height:300px;
 <?php
 $sochi = get_sochi();
 
-$events = get_request('events');
-$athlete = get_request('athlete');
-$country = get_request('country');
-if(isset($_REQUEST['get'])) {
-if($events) {
-$sochi = get_events();
-} else if($athlete) {
-$sochi = get_athlete();
-} else if ($country){
-$sochi = get_country();
-}
+if($get) {
+	if($get == "events") {
+		$sochi = get_events();
+	} else if($get == "athlete") {
+		$sochi = get_athlete();
+	} else if ($get == "country"){
+		$sochi = get_country();
+	}
 }
 ?>
 <table>
