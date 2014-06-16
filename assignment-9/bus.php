@@ -37,8 +37,8 @@ function setExploded($mySpeed) {
 function trigger() {
 	$this->exploded = true;
 	}
-function reset() {
-$this->exploded = false;
+	function clear() {
+   $this->speed = 20;
 }
 	}
 
