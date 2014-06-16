@@ -6,14 +6,14 @@ $speedBus = new Bus();
 ?>
 <p>Initial bus speed <?= $speedBus->getSpeed(); ?> mph</p>
 <p>Armed is <?= $speedBus->getArmed(); ?></p>
-<p>Exploded is <?= $speedBus->getExploded(); ?></p><br>
+<p>Exploded is <?= $speedBus->getExploded(); ?></p>
 
 <?php
 $speedBus->setSpeed(55);
 
 ?>
 <p>Bus increase the speed to <?= $speedBus->getSpeed(); ?> mph </p>
-<p> Armed is <?= $speedBus->getArmed(); ?></p><br>
+<p> Armed is <?= $speedBus->getArmed(); ?></p>
 
 <?php
 $speedBus->setSpeed(80);
@@ -22,7 +22,7 @@ $speedBus->getExploded(55);
 ?>
 <p>Bus increase the speed to <?= $speedBus->getSpeed(); ?> mph </p>
 <p> Armed is <?= $speedBus->getArmed(); ?></p>
-<p> Exploded is <?= $speedBus->getExploded(); ?></p><br>
+<p> Exploded is <?= $speedBus->getExploded(); ?></p>
 
 <?php
 $speedBus->setSpeed(30);
@@ -31,7 +31,7 @@ $speedBus->getExploded(30);
 ?>
 <p>Bus drop the speed to <?= $speedBus->getSpeed(); ?> mph </p>
 <p> Armed is <?= $speedBus->getArmed(); ?></p>
-<p> Exploded is <?= $speedBus->getExploded(); ?></p><br>
+<p> Exploded is <?= $speedBus->getExploded(); ?></p>
 
 <?php
 $speedBus->reset();
@@ -41,4 +41,4 @@ $speedBus->reset();
 <?php
 $speedBus->trigger();
 ?>
-<p>Exploded status is <?= $speedBus->getExploded(); ?>  </p><br>
+<p>Exploded status is <?= $speedBus->getExploded(); ?>  </p> 

@@ -17,17 +17,17 @@ function getSpeed() {
 	return $this->speed;
 }
 
-function setSpeed($speed) {
-$this->speed = $speed;
-	if ($speed >=50) {
+function setSpeed($mySpeed) {
+$this->speed = $mySpeed;
+	if ($mySpeed >=50) {
 	$this->armed = true;
 	} else {
 	$this->armed = false;
 }
 }
 
-function setExploded($speed) {
-	if ($speed <50) {
+function setExploded($mySpeed) {
+	if ($mySpeed <50) {
 	$this->exploded = true;
 	} else {
 	$this->exploded = false;
